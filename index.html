@@ -4,143 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Patientendaten Versand</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        margin: 20px;
-        background-color: #fff;
-        color: #000;
-      }
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-bottom: 15px;
-        border-bottom: 1px solid #ccc;
-        margin-bottom: 30px;
-      }
-      .header-left {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-      }
-      .profile-picture-container {
-        width: 48px;
-        height: 48px;
-        position: relative;
-      }
-      #profilePic {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-      .initials-fallback {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background-color: #007cba;
-        color: white;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 1.2em;
-      }
-      .user-info {
-        display: flex;
-        flex-direction: column;
-      }
-      .user-info .name {
-        font-weight: bold;
-        font-size: 1.1em;
-      }
-      h3,
-      p {
-        font-size: 1em;
-        margin-top: 0;
-      }
-      h3 {
-        font-weight: bold;
-        margin-bottom: 15px;
-      }
-      .upload-area {
-        border: 2px dashed #ccc;
-        padding: 30px;
-        text-align: center;
-        margin-top: 10px;
-        margin-bottom: 20px;
-        cursor: pointer;
-      }
-      .upload-area.drag-over {
-        border-color: #000;
-        background-color: #f0f0f0;
-      }
-      #fileInput {
-        display: none;
-      }
-      .file-table-container {
-        margin-top: 20px;
-        margin-bottom: 20px;
-      }
-      #fileListTable {
-        width: 100%;
-        border-collapse: collapse;
-      }
-      #fileListTable th,
-      #fileListTable td {
-        border: 1px solid #ccc;
-        padding: 10px;
-        text-align: left;
-        vertical-align: middle;
-      }
-      #fileListTable th {
-        background-color: #f2f2f2;
-        font-weight: bold;
-      }
-      #fileListTable td:last-child {
-        text-align: center;
-        width: 120px;
-      }
-      .info-box {
-        background-color: #f2f2f2;
-        border: 1px solid #ccc;
-        padding: 15px;
-        margin-top: 15px;
-        border-radius: 5px;
-      }
-      .send-button-container {
-        text-align: right;
-      }
-      button {
-        padding: 10px 20px;
-        cursor: pointer;
-        font-size: 1em;
-        border: 1px solid #888;
-        background-color: #f0f0f0;
-        color: #000;
-        border-radius: 4px;
-        font-weight: normal;
-      }
-      .button-primary {
-        background-color: #007cba;
-        color: white;
-        border-color: #007cba;
-        font-weight: bold;
-      }
-      button:disabled {
-        background-color: #e9ecef;
-        border-color: #ced4da;
-        color: #6c757d;
-        cursor: not-allowed;
-        font-weight: normal;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
@@ -195,6 +59,10 @@
         </p>
       </div>
     </div>
+    <footer>
+      <a href="compliance.html">Compliance Hub</a>
+      <a href="impressum.html">Impressum</a>
+    </footer>
 
     <script>
       const appData = {
