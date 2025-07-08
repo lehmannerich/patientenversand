@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patientendaten Versand</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        margin: 20px;
+        background-color: #fff;
+        color: #000;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 30px;
+      }
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .profile-picture-container {
+        width: 48px;
+        height: 48px;
+        position: relative;
+      }
+      #profilePic {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .initials-fallback {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #007cba;
+        color: white;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+      .user-info {
+        display: flex;
+        flex-direction: column;
+      }
+      .user-info .name {
+        font-weight: bold;
+        font-size: 1.1em;
+      }
+      h3,
+      p {
+        font-size: 1em;
+        margin-top: 0;
+      }
+      h3 {
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+      .upload-area {
+        border: 2px dashed #ccc;
+        padding: 30px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        cursor: pointer;
+      }
+      .upload-area.drag-over {
+        border-color: #000;
+        background-color: #f0f0f0;
+      }
+      #fileInput {
+        display: none;
+      }
+      .file-table-container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      #fileListTable {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      #fileListTable th,
+      #fileListTable td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+        vertical-align: middle;
+      }
+      #fileListTable th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+      #fileListTable td:last-child {
+        text-align: center;
+        width: 120px;
+      }
+      .info-box {
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-top: 15px;
+        border-radius: 5px;
+      }
+      .send-button-container {
+        text-align: right;
+      }
+      button {
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 1em;
+        border: 1px solid #888;
+        background-color: #f0f0f0;
+        color: #000;
+        border-radius: 4px;
+        font-weight: normal;
+      }
+      .button-primary {
+        background-color: #007cba;
+        color: white;
+        border-color: #007cba;
+        font-weight: bold;
+      }
+      button:disabled {
+        background-color: #e9ecef;
+        border-color: #ced4da;
+        color: #6c757d;
+        cursor: not-allowed;
+        font-weight: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-left">
+          <div class="profile-picture-container">
+            <img id="profilePic" src="" alt="Profilbild Patient" />
+            <div id="profileInitials" class="initials-fallback"></div>
+          </div>
+          <div class="user-info">
+            <span id="patientNameHeader" class="name"></span>
+            <span id="patientOrgHeader" class="org"></span>
+          </div>
+        </div>
+        <div id="portalTitle" class="header-right"></div>
+      </header>
+
+      <h3>Dateien für den Versand auswählen</h3>
+
+      <div id="uploadArea" class="upload-area">
+        <p>Dateien per Drag & Drop hierher ziehen<br />oder</p>
+        <button type="button" id="browseBtn" class="button-primary">
+          Dateien hinzufügen
+        </button>
+      </div>
+      <input type="file" id="fileInput" multiple />
+
+      <div class="file-table-container" id="fileTableContainer" style="display: none">
+        <table id="fileListTable">
+          <thead>
+            <tr>
+              <th>Dateiname</th>
+              <th>Größe</th>
+              <th>Aktion</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="send-button-container">
+        <button id="sendBtn" disabled>Dateien an Patienten schicken</button>
+      </div>
+
+      <div class="info-box">
+        <p>
+          <strong>Der Versand durch patientenversand.de ist DSGVO-konform</strong><br />
+          Ihre hochgeladenen Dateien werden zu einem ZIP-Archiv zusammengefasst und stark
+          verschlüsselt. Der Patient erhält eine E-Mail mit dem Link zum Download des
+          Archivs. Das notwendige Passwort wird ihm separat per SMS an die hinterlegte
+          Mobilfunknummer gesendet.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      const appData = {
+        patient: {
+          name: "Erich Lehmann",
+          org: "AOK Baden-Württemberg",
+          profilePicUrl: "erich.png",
+        },
+        portal: {
+          title: "Patientendaten Versandportal",
+        },
+      };
+
+      let uploadedFiles = [];
+
+      const fileInput = document.getElementById("fileInput");
+      const uploadArea = document.getElementById("uploadArea");
+      const fileTableContainer = document.getElementById("fileTableContainer");
+      const fileTableBody = document.querySelector("#fileListTable tbody");
+      const sendBtn = document.getElementById("sendBtn");
+      const browseBtn = document.getElementById("browseBtn");
+      const profilePic = document.getElementById("profilePic");
+      const profileInitials = document.getElementById("profileInitials");
+
+      function getInitials(name) {
+        const parts = name.split(" ");
+        const first = parts[0] ? parts[0][0] : "";
+        const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+        return `${first}${last}`.toUpperCase();
+      }
+
+      function populateData() {
+        document.title = `Patientenversand - ${appData.patient.name}`;
+        document.getElementById("patientNameHeader").textContent = appData.patient.name;
+        document.getElementById("patientOrgHeader").textContent = appData.patient.org;
+        document.getElementById("portalTitle").textContent = appData.portal.title;
+        profilePic.src = appData.patient.profilePicUrl;
+      }
+
+      profilePic.onerror = function () {
+        profilePic.style.display = "none";
+        profileInitials.textContent = getInitials(appData.patient.name);
+        profileInitials.style.display = "flex";
+      };
+
+      uploadArea.addEventListener("click", () => fileInput.click());
+      fileInput.addEventListener("change", (e) =>
+        handleFileArray(Array.from(e.target.files))
+      );
+
+      ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+        uploadArea.addEventListener(eventName, preventDefaults, false);
+      });
+
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      ["dragenter", "dragover"].forEach((eventName) => {
+        uploadArea.addEventListener(
+          eventName,
+          () => uploadArea.classList.add("drag-over"),
+          false
+        );
+      });
+
+      ["dragleave", "drop"].forEach((eventName) => {
+        uploadArea.addEventListener(
+          eventName,
+          () => uploadArea.classList.remove("drag-over"),
+          false
+        );
+      });
+
+      uploadArea.addEventListener(
+        "drop",
+        (e) => {
+          handleFileArray(Array.from(e.dataTransfer.files));
+        },
+        false
+      );
+
+      function handleFileArray(files) {
+        files.forEach((file) => {
+          if (file.size > 50 * 1024 * 1024) {
+            alert(`Datei ${file.name} ist zu groß. Maximum: 50MB`);
+            return;
+          }
+          if (uploadedFiles.some((f) => f.name === file.name)) {
+            return;
+          }
+          uploadedFiles.push(file);
+          addFileToTable(file);
+        });
+        updateUI();
+      }
+
+      function addFileToTable(file) {
+        const row = fileTableBody.insertRow();
+        row.innerHTML = `
+          <td>${file.name}</td>
+          <td>${formatFileSize(file.size)}</td>
+          <td><button onclick="removeFile(this, '${file.name}')">Entfernen</button></td>
+        `;
+      }
+
+      function removeFile(buttonElement, fileName) {
+        uploadedFiles = uploadedFiles.filter((file) => file.name !== fileName);
+        buttonElement.closest("tr").remove();
+        updateUI();
+      }
+
+      function updateUI() {
+        const hasFiles = uploadedFiles.length > 0;
+        sendBtn.disabled = !hasFiles;
+
+        if (hasFiles) {
+          sendBtn.classList.add("button-primary");
+          browseBtn.classList.remove("button-primary");
+        } else {
+          sendBtn.classList.remove("button-primary");
+          browseBtn.classList.add("button-primary");
+        }
+        fileTableContainer.style.display = hasFiles ? "block" : "none";
+      }
+
+      function formatFileSize(bytes) {
+        if (bytes === 0) return "0 Bytes";
+        const k = 1024;
+        const sizes = ["Bytes", "KB", "MB", "GB"];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+      }
+
+      sendBtn.addEventListener("click", () => {
+        if (sendBtn.disabled) return;
+        sendBtn.disabled = true;
+        sendBtn.textContent = "Daten werden gesendet...";
+        sendBtn.classList.remove("button-primary");
+        setTimeout(() => {
+          alert("Die Daten wurden erfolgreich an den Patienten versendet.");
+          resetForm();
+        }, 2000);
+      });
+
+      function resetForm() {
+        uploadedFiles = [];
+        fileTableBody.innerHTML = "";
+        fileInput.value = "";
+        sendBtn.textContent = "Dateien an Patienten schicken";
+        updateUI();
+      }
+
+      document.addEventListener("DOMContentLoaded", populateData);
+    </script>
+  </body>
+</html>
