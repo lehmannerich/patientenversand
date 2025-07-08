@@ -2,6 +2,7 @@
 body {
   font-family: sans-serif;
   margin: 20px;
+  font-size: 1rem;
 }
 .container {
   max-width: 800px;
@@ -27,7 +28,8 @@ header .header-left {
   height: 48px;
   position: relative;
 }
-#profilePic, .initials-fallback {
+#profilePic,
+.initials-fallback {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -46,15 +48,18 @@ header .header-left {
 }
 
 .header-right a {
-    color: #007cba;
-    text-decoration: none;
+  color: #007cba;
+  text-decoration: none;
 }
 .header-right a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* Typography */
-h2, h3 {
+h1,
+h2,
+h3 {
+  font-size: 1rem;
   margin-top: 30px;
   margin-bottom: 15px;
 }
@@ -83,7 +88,8 @@ h2, h3 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-#fileListTable th, #fileListTable td {
+#fileListTable th,
+#fileListTable td {
   border: 1px solid #ccc;
   padding: 10px;
   text-align: left;
@@ -99,6 +105,8 @@ h2, h3 {
 button {
   padding: 10px 20px;
   cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
 }
 .button-primary {
   background-color: #007cba;
@@ -121,18 +129,31 @@ button:disabled {
 
 /* Footer */
 footer {
-    border-top: 1px solid #ccc;
-    margin-top: 40px;
-    padding-top: 20px;
-    text-align: center;
-    font-size: 0.9em;
-    color: #666;
+  max-width: 800px;
+  margin: 40px auto 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+  text-align: center;
+  color: #666;
 }
 footer a {
-    color: #007cba;
-    text-decoration: none;
-    margin: 0 10px;
+  color: #000;
+  text-decoration: none;
+  margin: 0 10px;
 }
 footer a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+
+a.home-link {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}
+a.home-link:hover {
+  text-decoration: underline;
+}
+
+.user-profile-area {
+  margin-bottom: 30px;
 }
