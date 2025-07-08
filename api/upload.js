@@ -17,6 +17,7 @@ export default async function upload(request) {
 
   const blob = await put(file.name, file, {
     access: "public",
+    addRandomSuffix: true,
   });
 
   return new Response(JSON.stringify(blob), {

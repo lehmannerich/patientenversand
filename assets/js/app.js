@@ -1,31 +1,34 @@
-const appData = {
+var appData = {
   patient: {
     name: "Erich Lehmann",
     org: "AOK Baden-Württemberg",
     profilePicUrl: "assets/images/erich.png",
   },
+  portal: {
+    title: "Patientendaten Versandportal",
+  },
 };
 
-let uploadedFiles = [];
+var uploadedFiles = [];
 
-const fileInput = document.getElementById("fileInput");
-const uploadArea = document.getElementById("uploadArea");
-const fileTableContainer = document.getElementById("fileTableContainer");
-const fileTableBody = document.querySelector("#fileListTable tbody");
-const sendBtn = document.getElementById("sendBtn");
-const browseBtn = document.getElementById("browseBtn");
-const profilePic = document.getElementById("profilePic");
-const profileInitials = document.getElementById("profileInitials");
+var fileInput = document.getElementById("fileInput");
+var uploadArea = document.getElementById("uploadArea");
+var fileTableContainer = document.getElementById("fileTableContainer");
+var fileTableBody = document.querySelector("#fileListTable tbody");
+var sendBtn = document.getElementById("sendBtn");
+var browseBtn = document.getElementById("browseBtn");
+var profilePic = document.getElementById("profilePic");
+var profileInitials = document.getElementById("profileInitials");
 
 function getInitials(name) {
-  const parts = name.split(" ");
-  const first = parts[0] ? parts[0][0] : "";
-  const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
-  return `${first}${last}`.toUpperCase();
+  var parts = name.split(" ");
+  var first = parts[0] ? parts[0][0] : "";
+  var last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+  return (first + last).toUpperCase();
 }
 
 function populateData() {
-  document.title = `Patientenversand - ${appData.patient.name}`;
+  document.title = "Patientenversand - " + appData.patient.name;
   document.getElementById("patientNameHeader").textContent = appData.patient.name;
   document.getElementById("patientOrgHeader").textContent = appData.patient.org;
   profilePic.src = appData.patient.profilePicUrl;
@@ -37,10 +40,14 @@ profilePic.onerror = function () {
   profileInitials.style.display = "flex";
 };
 
-uploadArea.addEventListener("click", () => fileInput.click());
-fileInput.addEventListener("change", (e) => handleFileArray(Array.from(e.target.files)));
+uploadArea.addEventListener("click", function () {
+  fileInput.click();
+});
+fileInput.addEventListener("change", function (e) {
+  handleFileArray(Array.from(e.target.files));
+});
 
-["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+["dragenter", "dragover", "dragleave", "drop"].forEach(function (eventName) {
   uploadArea.addEventListener(eventName, preventDefaults, false);
 });
 
@@ -49,37 +56,53 @@ function preventDefaults(e) {
   e.stopPropagation();
 }
 
-["dragenter", "dragover"].forEach((eventName) => {
+["dragenter", "dragover"].forEach(function (eventName) {
   uploadArea.addEventListener(
     eventName,
-    () => uploadArea.classList.add("drag-over"),
+    function () {
+      uploadArea.classList.add("drag-over");
+    },
     false
   );
 });
 
-["dragleave", "drop"].forEach((eventName) => {
+["dragleave", "drop"].forEach(function (eventName) {
   uploadArea.addEventListener(
     eventName,
-    () => uploadArea.classList.remove("drag-over"),
+    function () {
+      uploadArea.classList.remove("drag-over");
+    },
     false
   );
 });
 
 uploadArea.addEventListener(
   "drop",
-  (e) => {
+  function (e) {
     handleFileArray(Array.from(e.dataTransfer.files));
   },
   false
 );
 
 function handleFileArray(files) {
-  files.forEach((file) => {
+  files.forEach(function (file) {
     if (file.size > 50 * 1024 * 1024) {
-      alert(`Datei ${file.name} ist zu groß. Maximum: 50MB`);
+      alert("Datei " + file.name + " ist zu groß. Maximum: 50MB");
       return;
     }
-    if (uploadedFiles.some((f) => f.name === file.name)) {
+    if (
+      uploadedFiles.some(function (f) {
+        return f.name === file.name;
+      })
+    ) {
+      return;
+    }
+    // If there are already completed files in the list, clear them out
+    if (document.querySelector(".status-success, .status-error")) {
+      resetUI();
+    }
+    // Don't add files if the process is "done" and waiting for a reset
+    if (document.getElementById("reset-upload-btn").style.display !== "none") {
       return;
     }
     uploadedFiles.push(file);
@@ -89,22 +112,32 @@ function handleFileArray(files) {
 }
 
 function addFileToTable(file) {
-  const row = fileTableBody.insertRow();
-  row.innerHTML = `
-    <td>${file.name}</td>
-    <td>${formatFileSize(file.size)}</td>
-    <td><button onclick="removeFile(this, '${file.name}')">Entfernen</button></td>
-  `;
+  var row = fileTableBody.insertRow();
+  row.setAttribute("data-filename", file.name);
+
+  row.innerHTML =
+    "<td>" +
+    file.name +
+    "</td>" +
+    "<td>" +
+    formatFileSize(file.size) +
+    "</td>" +
+    "<td><button onclick=\"removeFile(this, '" +
+    file.name +
+    "')\">Entfernen</button></td>" +
+    '<td class="status-cell">bereit zum versenden</td>';
 }
 
 function removeFile(buttonElement, fileName) {
-  uploadedFiles = uploadedFiles.filter((file) => file.name !== fileName);
+  uploadedFiles = uploadedFiles.filter(function (file) {
+    return file.name !== fileName;
+  });
   buttonElement.closest("tr").remove();
   updateUI();
 }
 
 function updateUI() {
-  const hasFiles = uploadedFiles.length > 0;
+  var hasFiles = uploadedFiles.length > 0;
   sendBtn.disabled = !hasFiles;
 
   if (hasFiles) {
@@ -119,51 +152,90 @@ function updateUI() {
 
 function formatFileSize(bytes) {
   if (bytes === 0) return "0 Bytes";
-  const k = 1024;
-  const sizes = ["Bytes", "KB", "MB", "GB"];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  var k = 1024;
+  var sizes = ["Bytes", "KB", "MB", "GB"];
+  var i = Math.floor(Math.log(bytes) / Math.log(k));
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 }
 
-sendBtn.addEventListener("click", async () => {
+sendBtn.addEventListener("click", function () {
   if (sendBtn.disabled) return;
 
   sendBtn.disabled = true;
-  sendBtn.textContent = "Daten werden gesendet...";
-  sendBtn.classList.remove("button-primary");
+  sendBtn.textContent = "Am hochladen...";
+  document.getElementById("upload-heading").classList.add("disabled");
 
-  const uploadPromises = uploadedFiles.map((file) => {
-    const formData = new FormData();
+  var removeButtons = document.querySelectorAll("#fileListTable button");
+  removeButtons.forEach(function (button) {
+    button.disabled = true;
+  });
+
+  var uploadPromises = uploadedFiles.map(function (file) {
+    var row = fileTableBody.querySelector('[data-filename="' + file.name + '"]');
+    var statusCell = row.cells[3];
+    statusCell.innerHTML = '<div class="spinner"></div>';
+
+    var formData = new FormData();
     formData.append("file", file);
+
     return fetch("/api/upload", {
       method: "POST",
       body: formData,
-    });
+    })
+      .then(function (response) {
+        if (response.ok) {
+          statusCell.innerHTML = '<span class="status-success">versandt</span>';
+        } else {
+          statusCell.innerHTML = '<span class="status-error">✗ Fehlgeschlagen</span>';
+        }
+        return response;
+      })
+      .catch(function (error) {
+        console.error("Upload error for " + file.name, error);
+        statusCell.innerHTML = '<span class="status-error">✗ Netzwerkfehler</span>';
+        return { ok: false };
+      });
   });
 
-  try {
-    const results = await Promise.all(uploadPromises);
-    const allOk = results.every((res) => res.ok);
+  Promise.all(uploadPromises).then(function (results) {
+    var allOk = results.every(function (res) {
+      return res.ok;
+    });
 
     if (allOk) {
-      alert("Die Daten wurden erfolgreich an den Patienten versendet.");
+      sendBtn.textContent = "Dateien erfolgreich versandt";
+      document.getElementById("reset-upload-btn").style.display = "block";
+      // Visually disable the upload area now that the process is complete
+      document.getElementById("uploadArea").classList.add("disabled");
+      document.getElementById("browseBtn").disabled = true;
     } else {
-      alert("Ein Fehler ist aufgetreten. Nicht alle Dateien konnten gesendet werden.");
+      sendBtn.textContent = "Fehler";
+      sendBtn.disabled = false; // Re-enable to allow retry
+      document.getElementById("upload-heading").classList.remove("disabled");
+      alert(
+        "Einige Dateien konnten nicht hochgeladen werden. Bitte überprüfen Sie die Statusanzeige und versuchen Sie es erneut."
+      );
     }
-  } catch (error) {
-    console.error("Upload failed:", error);
-    alert("Ein schwerwiegender Fehler ist aufgetreten. Bitte versuchen Sie es erneut.");
-  } finally {
-    resetForm();
-  }
+  });
 });
 
-function resetForm() {
+function resetUI() {
   uploadedFiles = [];
   fileTableBody.innerHTML = "";
   fileInput.value = "";
-  sendBtn.textContent = "Dateien an Patienten schicken";
   updateUI();
+  sendBtn.textContent = "Dateien an Patienten versenden";
+  document.getElementById("upload-heading").classList.remove("disabled");
+  document.getElementById("reset-upload-btn").style.display = "none";
+  // Re-enable the upload area
+  document.getElementById("uploadArea").classList.remove("disabled");
+  document.getElementById("browseBtn").disabled = false;
 }
 
-document.addEventListener("DOMContentLoaded", populateData);
+document.addEventListener("DOMContentLoaded", function () {
+  populateData();
+  document.getElementById("reset-upload-btn").addEventListener("click", function (event) {
+    event.preventDefault();
+    resetUI();
+  });
+});

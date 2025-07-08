@@ -1,17 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const footerPlaceholder = document.getElementById("footer-placeholder");
+  var footerPlaceholder = document.getElementById("footer-placeholder");
   if (footerPlaceholder) {
     fetch("components/footer.html")
-      .then((response) => {
+      .then(function (response) {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         return response.text();
       })
-      .then((data) => {
+      .then(function (data) {
         footerPlaceholder.innerHTML = data;
       })
-      .catch((error) => {
+      .catch(function (error) {
         console.error("Error loading footer:", error);
         footerPlaceholder.innerHTML =
           "<p style='text-align: center; color: red;'>Error loading footer content.</p>";

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Patientendaten Versand</title>
+    <script src="https://unpkg.com/unfetch/dist/unfetch.umd.js"></script>
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
@@ -22,31 +23,37 @@
         </div>
       </div>
 
-      <h3>Dateien für den Versand auswählen</h3>
+      <div id="upload-form-container">
+        <h3 id="upload-heading">Dateien für den Versand auswählen</h3>
 
-      <div id="uploadArea" class="upload-area">
-        <p>Dateien per Drag & Drop hierher ziehen<br />oder</p>
-        <button type="button" id="browseBtn" class="button-primary">
-          Dateien hinzufügen
-        </button>
-      </div>
-      <input type="file" id="fileInput" multiple />
+        <div id="uploadArea" class="upload-area">
+          <p>Dateien per Drag & Drop hierher ziehen<br />oder</p>
+          <button type="button" id="browseBtn" class="button-primary">
+            Dateien hinzufügen
+          </button>
+        </div>
+        <input type="file" id="fileInput" multiple />
 
-      <div class="file-table-container" id="fileTableContainer" style="display: none">
-        <table id="fileListTable">
-          <thead>
-            <tr>
-              <th>Dateiname</th>
-              <th>Größe</th>
-              <th>Aktion</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
+        <div class="file-table-container" id="fileTableContainer" style="display: none">
+          <table id="fileListTable">
+            <thead>
+              <tr>
+                <th>Dateiname</th>
+                <th>Größe</th>
+                <th>Aktion</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
 
-      <div class="send-button-container">
-        <button id="sendBtn" disabled>Dateien an Patienten schicken</button>
+        <div class="send-button-container">
+          <button id="sendBtn" disabled>Dateien an Patienten versenden</button>
+          <a href="#" id="reset-upload-btn" class="reset-link" style="display: none"
+            >Mehr Daten an den Patienten schicken</a
+          >
+        </div>
       </div>
     </div>
     <div id="footer-placeholder"></div>

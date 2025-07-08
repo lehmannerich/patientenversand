@@ -201,3 +201,75 @@ a.home-link:hover {
 .footer-link:hover {
   text-decoration: underline;
 }
+
+/* Upload Status */
+.status-success {
+  color: green;
+  font-weight: bold;
+}
+.status-error {
+  color: red;
+  font-weight: bold;
+}
+.spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Upload Progress */
+#upload-progress-container {
+  margin-top: 20px;
+}
+#progress-message {
+  margin-bottom: 10px;
+  text-align: center;
+}
+.progress-bar-outline {
+  width: 100%;
+  height: 20px;
+  border: 1px solid #ccc;
+  background-color: #f3f3f3;
+}
+#progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background-color: #666;
+  transition: width 0.5s ease-in-out;
+}
+
+#upload-success-message {
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+#upload-heading.disabled {
+  opacity: 0.5;
+}
+
+.upload-area.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.reset-link {
+  display: block;
+  margin-top: 10px;
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+}
