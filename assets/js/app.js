@@ -4,9 +4,6 @@ const appData = {
     org: "AOK Baden-Württemberg",
     profilePicUrl: "assets/images/erich.png",
   },
-  portal: {
-    title: "Patientendaten Versandportal",
-  },
 };
 
 let uploadedFiles = [];

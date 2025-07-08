@@ -44,7 +44,10 @@ header .header-left {
   font-weight: bold;
 }
 .user-info .name {
-  font-weight: bold;
+  display: block;
+}
+.user-info .org {
+  display: block;
 }
 
 .header-right a {
@@ -133,8 +136,32 @@ footer {
   margin: 40px auto 20px;
   border-top: 1px solid #ccc;
   padding-top: 20px;
-  text-align: center;
+  font-size: 0.9em;
   color: #666;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-text {
+  flex-grow: 0;
+  flex-shrink: 1;
+  max-width: 60%;
+}
+.footer-text p {
+  margin: 0;
+}
+.footer-text a {
+  color: inherit;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+.footer-text a:hover {
+  text-decoration: underline;
+}
+.footer-links {
+  text-align: right;
+  flex-shrink: 0;
 }
 footer a {
   color: #000;
@@ -154,6 +181,23 @@ a.home-link:hover {
   text-decoration: underline;
 }
 
+.recipient-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 30px;
+}
 .user-profile-area {
   margin-bottom: 30px;
+}
+.footer-link {
+  color: #007cba;
+  text-decoration: none;
+  display: inline;
+}
+.footer-link:hover {
+  text-decoration: underline;
 }

@@ -9,16 +9,16 @@
   <body>
     <div class="container">
       <div id="header-placeholder"></div>
-      <div class="user-profile-area">
-        <div class="header-left">
-          <div class="profile-picture-container">
-            <img id="profilePic" src="" alt="Profilbild Patient" />
-            <div id="profileInitials" class="initials-fallback"></div>
-          </div>
-          <div class="user-info">
-            <span id="patientNameHeader" class="name"></span>
-            <span id="patientOrgHeader" class="org"></span>
-          </div>
+
+      <h3>Daten werden verschlüsselt versendet an:</h3>
+      <div class="recipient-card">
+        <div class="profile-picture-container">
+          <img id="profilePic" src="" alt="Profilbild Patient" />
+          <div id="profileInitials" class="initials-fallback"></div>
+        </div>
+        <div class="user-info">
+          <span id="patientNameHeader" class="name"></span>
+          <span id="patientOrgHeader" class="org"></span>
         </div>
       </div>
 
@@ -47,16 +47,6 @@
 
       <div class="send-button-container">
         <button id="sendBtn" disabled>Dateien an Patienten schicken</button>
-      </div>
-
-      <div class="info-box">
-        <p>
-          <strong>Der Versand durch patientenversand.de ist DSGVO-konform</strong><br />
-          Ihre hochgeladenen Dateien werden zu einem ZIP-Archiv zusammengefasst und stark
-          verschlüsselt. Der Patient erhält eine E-Mail mit dem Link zum Download des
-          Archivs. Das notwendige Passwort wird ihm separat per SMS an die hinterlegte
-          Mobilfunknummer gesendet.
-        </p>
       </div>
     </div>
     <div id="footer-placeholder"></div>
