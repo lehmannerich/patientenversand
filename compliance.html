@@ -28,32 +28,46 @@
         Prozess ist wie folgt gestaltet:
       </p>
 
-      <p>
-        <strong>Rechtsgrundlage:</strong><br />
-        Die Verarbeitung der hochgeladenen Daten erfolgt ausschließlich auf Grundlage der
-        Einwilligung des Patienten (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), der
-        dieses Portal betreibt.
-      </p>
-
-      <p>
-        <strong>Datenfluss:</strong><br />
-        Eine Arztpraxis lädt eine oder mehrere Dateien über eine verschlüsselte
-        HTTPS-Verbindung auf die Server-Infrastruktur hoch. Die Dateien werden dort
-        temporär zwischengespeichert und unmittelbar an einen sicheren Objektspeicher
-        (Blob Storage) weitergeleitet. Nach erfolgreicher Übertragung wird die temporäre
-        Kopie auf dem Server sofort gelöscht.
-      </p>
-
-      <p>
-        <strong>Keine Nutzerkonten:</strong><br />
-        Das hochladende medizinische Personal benötigt kein Benutzerkonto. Es werden keine
-        personenbezogenen Daten des Personals gespeichert.
-      </p>
-
-      <p>
-        <strong>Transparenz:</strong><br />
-        Der vollständige Quellcode des Portals ist öffentlich auf GitHub einsehbar.
-      </p>
+      <table class="compliance-table">
+        <tr>
+          <td class="label-column">Rechtsgrundlage</td>
+          <td>
+            Die Verarbeitung der hochgeladenen Daten erfolgt ausschließlich auf Grundlage
+            der Einwilligung des Patienten (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a
+            DSGVO), der dieses Portal betreibt.
+          </td>
+        </tr>
+        <tr>
+          <td class="label-column">Datenfluss</td>
+          <td>
+            Eine Arztpraxis lädt eine oder mehrere Dateien über eine verschlüsselte
+            HTTPS-Verbindung auf die Server-Infrastruktur hoch. Die Dateien werden dort
+            temporär zwischengespeichert und unmittelbar an einen sicheren Objektspeicher
+            (Blob Storage) weitergeleitet. Nach erfolgreicher Übertragung wird die
+            temporäre Kopie auf dem Server sofort gelöscht.
+          </td>
+        </tr>
+        <tr>
+          <td class="label-column">Keine Nutzerkonten</td>
+          <td>
+            Das hochladende medizinische Personal benötigt kein Benutzerkonto. Es werden
+            keine personenbezogenen Daten des Personals gespeichert.
+          </td>
+        </tr>
+        <tr>
+          <td class="label-column">Transparenz</td>
+          <td>
+            Der vollständige Quellcode des Portals ist
+            <a
+              href="https://github.com/lehmannerich/patientenversand"
+              target="_blank"
+              rel="noopener noreferrer"
+              >öffentlich auf GitHub</a
+            >
+            einsehbar.
+          </td>
+        </tr>
+      </table>
 
       <h2>Technische & Organisatorische Maßnahmen (TOM)</h2>
       <p>
@@ -61,49 +75,47 @@
         Daten zu gewährleisten:
       </p>
 
-      <p><strong>Vertraulichkeit:</strong></p>
-      <ul>
-        <li>
-          <strong>Transportverschlüsselung:</strong> Jegliche Datenkommunikation zwischen
-          dem Browser des Nutzers und dem Server ist mittels TLS 1.2 oder höher (HTTPS)
-          verschlüsselt.
-        </li>
-        <li>
-          <strong>Verschlüsselung im Ruhezustand (Encryption-at-rest):</strong> Alle
-          hochgeladenen Dateien werden im Blob Storage serverseitig mit dem AES-256
-          Standard verschlüsselt.
-        </li>
-        <li>
-          <strong>Zugriffsbeschränkung:</strong> Der Zugriff auf eine Datei ist nur über
-          eine einmalig generierte, nicht erratbare URL mit einem zufälligen Suffix
-          möglich. Dies schränkt den Zugriff effektiv auf Personen ein, die den exakten
-          Link kennen.
-        </li>
-        <li>
-          <strong>Löschung:</strong> Die Dateien werden nach dem Upload auf den Webserver
-          sofort und unwiderruflich aus dem temporären Speicher des Servers gelöscht,
-          sobald sie an den finalen Speicherort übertragen wurden.
-        </li>
-      </ul>
-
-      <p>
-        <strong>Integrität:</strong><br />
-        Die Datenintegrität während der Übertragung wird durch die verwendeten Protokolle
-        (TCP/IP, HTTPS) sichergestellt. Die Speicherinfrastruktur des Subprozessors
-        gewährleistet die Integrität der Daten im Ruhezustand.
-      </p>
-
-      <p>
-        <strong>Verfügbarkeit:</strong><br />
-        Das System wird auf einer hochverfügbaren, cloud-nativen Infrastruktur betrieben,
-        um eine zuverlässige Erreichbarkeit zu gewährleisten.
-      </p>
-
-      <p>
-        <strong>Datenminimierung:</strong><br />
-        Es werden keine über den technischen Zweck hinausgehenden Daten erhoben oder
-        gespeichert. Es gibt keine Cookies und kein Tracking.
-      </p>
+      <table class="compliance-table">
+        <tr>
+          <td class="label-column">Vertraulichkeit</td>
+          <td>
+            <strong>Transportverschlüsselung:</strong> Jegliche Datenkommunikation
+            zwischen dem Browser des Nutzers und dem Server ist mittels TLS 1.2 oder höher
+            (HTTPS) verschlüsselt.<br /><br />
+            <strong>Verschlüsselung im Ruhezustand:</strong> Alle hochgeladenen Dateien
+            werden im Blob Storage serverseitig mit dem AES-256 Standard verschlüsselt.<br /><br />
+            <strong>Zugriffsbeschränkung:</strong> Der Zugriff auf eine Datei ist nur über
+            eine einmalig generierte, nicht erratbare URL mit einem zufälligen Suffix
+            möglich. Dies schränkt den Zugriff effektiv auf Personen ein, die den exakten
+            Link kennen.<br /><br />
+            <strong>Löschung:</strong> Die Dateien werden nach dem Upload auf den
+            Webserver sofort und unwiderruflich aus dem temporären Speicher des Servers
+            gelöscht, sobald sie an den finalen Speicherort übertragen wurden.
+          </td>
+        </tr>
+        <tr>
+          <td class="label-column">Integrität</td>
+          <td>
+            Die Datenintegrität während der Übertragung wird durch die verwendeten
+            Protokolle (TCP/IP, HTTPS) sichergestellt. Die Speicherinfrastruktur des
+            Subprozessors gewährleistet die Integrität der Daten im Ruhezustand.
+          </td>
+        </tr>
+        <tr>
+          <td class="label-column">Verfügbarkeit</td>
+          <td>
+            Das System wird auf einer hochverfügbaren, cloud-nativen Infrastruktur
+            betrieben, um eine zuverlässige Erreichbarkeit zu gewährleisten.
+          </td>
+        </tr>
+        <tr>
+          <td class="label-column">Datenminimierung</td>
+          <td>
+            Es werden keine über den technischen Zweck hinausgehenden Daten erhoben oder
+            gespeichert. Es gibt keine Cookies und kein Tracking.
+          </td>
+        </tr>
+      </table>
 
       <h2>Subprozessoren & Datentransfers</h2>
       <p>
@@ -111,43 +123,53 @@
         Subprozessor eingesetzt:
       </p>
 
-      <p>
-        <strong>Unternehmen:</strong><br />
-        Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA.
-      </p>
-
-      <p>
-        <strong>Zweck:</strong><br />
-        Hosting der Web-Infrastruktur und Bereitstellung des Blob Storage für die
-        Dateiuploads.
-      </p>
-
-      <p>
-        <strong>Verarbeitete Daten (als Auftragsverarbeiter):</strong><br />
-        Vercel verarbeitet im Auftrag des Betreibers technisch notwendige Verbindungsdaten
-        der Nutzer (z.B. IP-Adressen) zur Gewährleistung der Sicherheit und zur
-        Auslieferung der Inhalte, sowie die hochgeladenen Dateien selbst. Die
-        Anwendungslogik dieses Portals greift nicht auf die IP-Adressen zu.
-      </p>
-
-      <p>
-        <strong>Datenübermittlung in Drittländer:</strong><br />
-        Die Datenverarbeitung durch Vercel findet in den USA statt. Die Rechtmäßigkeit
-        dieser Datenübermittlung in ein Drittland ist durch angemessene Garantien nach
-        Art. 46 DSGVO sichergestellt. Vercel ist unter dem
-        <strong>EU-U.S. Data Privacy Framework</strong> zertifiziert, wodurch ein
-        Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO) vorliegt. Zusätzlich
-        werden <strong>Standardvertragsklauseln (SCC)</strong> angewendet.
-      </p>
-
-      <p>
-        <strong>Dokumentation:</strong><br />
-        Die Grundlage für diese Zusammenarbeit bildet das
-        <a href="https://vercel.com/legal/dpa" target="_blank" rel="noopener noreferrer"
-          >Data Processing Addendum (DPA) von Vercel</a
-        >, welches die technischen und organisatorischen Maßnahmen sowie die Pflichten
-        beider Parteien detailliert regelt.
-      </p>
+      <table class="compliance-table">
+        <tr>
+          <td class="label-column">Unternehmen</td>
+          <td>Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA</td>
+        </tr>
+        <tr>
+          <td class="label-column">Zweck</td>
+          <td>
+            Hosting der Web-Infrastruktur und Bereitstellung des Blob Storage für die
+            Dateiuploads
+          </td>
+        </tr>
+        <tr>
+          <td class="label-column">Verarbeitete Daten</td>
+          <td>
+            Vercel verarbeitet im Auftrag des Betreibers technisch notwendige
+            Verbindungsdaten der Nutzer (z.B. IP-Adressen) zur Gewährleistung der
+            Sicherheit und zur Auslieferung der Inhalte, sowie die hochgeladenen Dateien
+            selbst. Die Anwendungslogik dieses Portals greift nicht auf die IP-Adressen
+            zu.
+          </td>
+        </tr>
+        <tr>
+          <td class="label-column">Datenübermittlung in Drittländer</td>
+          <td>
+            Die Datenverarbeitung durch Vercel findet in den USA statt. Die Rechtmäßigkeit
+            dieser Datenübermittlung in ein Drittland ist durch angemessene Garantien nach
+            Art. 46 DSGVO sichergestellt. Vercel ist unter dem
+            <strong>EU-U.S. Data Privacy Framework</strong> zertifiziert, wodurch ein
+            Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO) vorliegt.
+            Zusätzlich werden <strong>Standardvertragsklauseln (SCC)</strong> angewendet.
+          </td>
+        </tr>
+        <tr>
+          <td class="label-column">Dokumentation</td>
+          <td>
+            Die Grundlage für diese Zusammenarbeit bildet das
+            <a
+              href="https://vercel.com/legal/dpa"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Data Processing Addendum (DPA) von Vercel</a
+            >, welches die technischen und organisatorischen Maßnahmen sowie die Pflichten
+            beider Parteien detailliert regelt.
+          </td>
+        </tr>
+      </table>
       <p>Es werden keine weiteren Subprozessoren eingesetzt.</p>
 
       <h2>Kontakt für Datenschutzanliegen</h2>
@@ -158,15 +180,16 @@
         wenden Sie sich bitte direkt an den Betreiber:
       </p>
 
-      <p>
-        <strong>Verantwortlicher:</strong><br />
-        Erich Lehmann
-      </p>
-
-      <p>
-        <strong>E-Mail:</strong><br />
-        erichjohannlehmann[at]gmail.com
-      </p>
+      <table class="compliance-table">
+        <tr>
+          <td class="label-column">Verantwortlicher</td>
+          <td>Erich Lehmann</td>
+        </tr>
+        <tr>
+          <td class="label-column">E-Mail</td>
+          <td>erichjohannlehmann[at]gmail.com</td>
+        </tr>
+      </table>
     </div>
     <div id="footer-placeholder"></div>
     <script src="assets/js/header.js"></script>
