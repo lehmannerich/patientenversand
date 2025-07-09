@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // --- Set Page Title ---
+  const pagePath = window.location.pathname.split("/").pop();
+  const pageKey = pagePath === "" ? "index.html" : pagePath;
+  const pageTitle = config.pageTitles[pageKey];
+  if (pageTitle) {
+    document.title = `${pageTitle} | ${config.project.name}`;
+  }
+
   // --- Helper function to safely set text content ---
   const setText = (id, text) => {
     const element = document.getElementById(id);
