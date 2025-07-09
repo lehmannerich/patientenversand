@@ -43,9 +43,7 @@
         <li>
           <strong>Keine Nutzerkonten:</strong> Das hochladende medizinische Personal
           benötigt kein Benutzerkonto. Es werden keine personenbezogenen Daten des
-          Personals gespeichert. Lediglich technisch notwendige Verbindungsdaten (z.B.
-          IP-Adressen) werden von der Hosting-Infrastruktur temporär zur Sicherstellung
-          des Betriebs verarbeitet.
+          Personals gespeichert.
         </li>
         <li>
           <strong>Transparenz:</strong> Der vollständige Quellcode des Portals ist
@@ -68,10 +66,14 @@
               höher (HTTPS) verschlüsselt.
             </li>
             <li>
-              <strong>Speicherzugriff:</strong> Die hochgeladenen Dateien werden in einem
-              Blob Storage gespeichert. Der Zugriff auf eine Datei ist nur über eine
-              einmalig generierte, nicht erratbare URL mit einem zufälligen Suffix
-              möglich. Dies schränkt den Zugriff effektiv auf Personen ein, die den
+              <strong>Verschlüsselung im Ruhezustand (Encryption-at-rest):</strong> Alle
+              hochgeladenen Dateien werden im Blob Storage serverseitig mit dem AES-256
+              Standard verschlüsselt.
+            </li>
+            <li>
+              <strong>Zugriffsbeschränkung:</strong> Der Zugriff auf eine Datei ist nur
+              über eine einmalig generierte, nicht erratbare URL mit einem zufälligen
+              Suffix möglich. Dies schränkt den Zugriff effektiv auf Personen ein, die den
               exakten Link kennen.
             </li>
             <li>
@@ -110,16 +112,32 @@
           91789, USA.
         </li>
         <li>
-          <strong>Zweck:</strong> Hosting der Website und Bereitstellung des Blob Storage
-          für die Dateiuploads.
+          <strong>Zweck:</strong> Hosting der Web-Infrastruktur und Bereitstellung des
+          Blob Storage für die Dateiuploads.
         </li>
         <li>
-          <strong>Datenübermittlung in Drittländer:</strong> Daten können in den USA
-          verarbeitet werden. Vercel Inc. ist unter dem EU-U.S. Data Privacy Framework
-          zertifiziert. Die Rechtmäßigkeit der Datenübermittlung ist somit durch den
-          Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO) sowie durch
-          Standardvertragsklauseln im Rahmen des Vercel Data Processing Addendum (DPA)
-          sichergestellt.
+          <strong>Verarbeitete Daten (als Auftragsverarbeiter):</strong> Vercel
+          verarbeitet im Auftrag des Betreibers technisch notwendige Verbindungsdaten der
+          Nutzer (z.B. IP-Adressen) zur Gewährleistung der Sicherheit und zur Auslieferung
+          der Inhalte, sowie die hochgeladenen Dateien selbst. Die Anwendungslogik dieses
+          Portals greift nicht auf die IP-Adressen zu.
+        </li>
+        <li>
+          <strong>Datenübermittlung in Drittländer:</strong> Die Datenverarbeitung durch
+          Vercel findet in den USA statt. Die Rechtmäßigkeit dieser Datenübermittlung in
+          ein Drittland ist durch angemessene Garantien nach Art. 46 DSGVO sichergestellt.
+          Vercel ist unter dem
+          <strong>EU-U.S. Data Privacy Framework</strong> zertifiziert, wodurch ein
+          Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO) vorliegt. Zusätzlich
+          werden <strong>Standardvertragsklauseln (SCC)</strong> angewendet.
+        </li>
+        <li>
+          <strong>Dokumentation:</strong> Die Grundlage für diese Zusammenarbeit bildet
+          das
+          <a href="https://vercel.com/legal/dpa" target="_blank" rel="noopener noreferrer"
+            >Data Processing Addendum (DPA) von Vercel</a
+          >, welches die technischen und organisatorischen Maßnahmen sowie die Pflichten
+          beider Parteien detailliert regelt.
         </li>
       </ul>
       <p>Es werden keine weiteren Subprozessoren eingesetzt.</p>

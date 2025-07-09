@@ -140,7 +140,7 @@ footer {
   color: #666;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 .footer-text {
   flex-grow: 0;
