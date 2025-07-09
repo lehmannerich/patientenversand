@@ -27,119 +27,127 @@
         Das Portal folgt den Prinzipien "Privacy by Design" und "Datenminimierung". Der
         Prozess ist wie folgt gestaltet:
       </p>
-      <ul>
-        <li>
-          <strong>Rechtsgrundlage:</strong> Die Verarbeitung der hochgeladenen Daten
-          erfolgt ausschließlich auf Grundlage der Einwilligung des Patienten (Art. 6 Abs.
-          1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), der dieses Portal betreibt.
-        </li>
-        <li>
-          <strong>Datenfluss:</strong> Eine Arztpraxis lädt eine oder mehrere Dateien über
-          eine verschlüsselte HTTPS-Verbindung auf die Server-Infrastruktur hoch. Die
-          Dateien werden dort temporär zwischengespeichert und unmittelbar an einen
-          sicheren Objektspeicher (Blob Storage) weitergeleitet. Nach erfolgreicher
-          Übertragung wird die temporäre Kopie auf dem Server sofort gelöscht.
-        </li>
-        <li>
-          <strong>Keine Nutzerkonten:</strong> Das hochladende medizinische Personal
-          benötigt kein Benutzerkonto. Es werden keine personenbezogenen Daten des
-          Personals gespeichert.
-        </li>
-        <li>
-          <strong>Transparenz:</strong> Der vollständige Quellcode des Portals ist
-          öffentlich auf GitHub einsehbar.
-        </li>
-      </ul>
+
+      <p>
+        <strong>Rechtsgrundlage:</strong><br />
+        Die Verarbeitung der hochgeladenen Daten erfolgt ausschließlich auf Grundlage der
+        Einwilligung des Patienten (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), der
+        dieses Portal betreibt.
+      </p>
+
+      <p>
+        <strong>Datenfluss:</strong><br />
+        Eine Arztpraxis lädt eine oder mehrere Dateien über eine verschlüsselte
+        HTTPS-Verbindung auf die Server-Infrastruktur hoch. Die Dateien werden dort
+        temporär zwischengespeichert und unmittelbar an einen sicheren Objektspeicher
+        (Blob Storage) weitergeleitet. Nach erfolgreicher Übertragung wird die temporäre
+        Kopie auf dem Server sofort gelöscht.
+      </p>
+
+      <p>
+        <strong>Keine Nutzerkonten:</strong><br />
+        Das hochladende medizinische Personal benötigt kein Benutzerkonto. Es werden keine
+        personenbezogenen Daten des Personals gespeichert.
+      </p>
+
+      <p>
+        <strong>Transparenz:</strong><br />
+        Der vollständige Quellcode des Portals ist öffentlich auf GitHub einsehbar.
+      </p>
 
       <h2>Technische & Organisatorische Maßnahmen (TOM)</h2>
       <p>
         Es wurden umfassende Maßnahmen getroffen, um die Sicherheit der verarbeiteten
         Daten zu gewährleisten:
       </p>
+
+      <p><strong>Vertraulichkeit:</strong></p>
       <ul>
         <li>
-          <strong>Vertraulichkeit:</strong>
-          <ul>
-            <li>
-              <strong>Transportverschlüsselung:</strong> Jegliche Datenkommunikation
-              zwischen dem Browser des Nutzers und dem Server ist mittels TLS 1.2 oder
-              höher (HTTPS) verschlüsselt.
-            </li>
-            <li>
-              <strong>Verschlüsselung im Ruhezustand (Encryption-at-rest):</strong> Alle
-              hochgeladenen Dateien werden im Blob Storage serverseitig mit dem AES-256
-              Standard verschlüsselt.
-            </li>
-            <li>
-              <strong>Zugriffsbeschränkung:</strong> Der Zugriff auf eine Datei ist nur
-              über eine einmalig generierte, nicht erratbare URL mit einem zufälligen
-              Suffix möglich. Dies schränkt den Zugriff effektiv auf Personen ein, die den
-              exakten Link kennen.
-            </li>
-            <li>
-              <strong>Löschung:</strong> Die Dateien werden nach dem Upload auf den
-              Webserver sofort und unwiderruflich aus dem temporären Speicher des Servers
-              gelöscht, sobald sie an den finalen Speicherort übertragen wurden.
-            </li>
-          </ul>
+          <strong>Transportverschlüsselung:</strong> Jegliche Datenkommunikation zwischen
+          dem Browser des Nutzers und dem Server ist mittels TLS 1.2 oder höher (HTTPS)
+          verschlüsselt.
         </li>
         <li>
-          <strong>Integrität:</strong> Die Datenintegrität während der Übertragung wird
-          durch die verwendeten Protokolle (TCP/IP, HTTPS) sichergestellt. Die
-          Speicherinfrastruktur des Subprozessors gewährleistet die Integrität der Daten
-          im Ruhezustand.
+          <strong>Verschlüsselung im Ruhezustand (Encryption-at-rest):</strong> Alle
+          hochgeladenen Dateien werden im Blob Storage serverseitig mit dem AES-256
+          Standard verschlüsselt.
         </li>
         <li>
-          <strong>Verfügbarkeit:</strong> Das System wird auf einer hochverfügbaren,
-          cloud-nativen Infrastruktur betrieben, um eine zuverlässige Erreichbarkeit zu
-          gewährleisten.
+          <strong>Zugriffsbeschränkung:</strong> Der Zugriff auf eine Datei ist nur über
+          eine einmalig generierte, nicht erratbare URL mit einem zufälligen Suffix
+          möglich. Dies schränkt den Zugriff effektiv auf Personen ein, die den exakten
+          Link kennen.
         </li>
         <li>
-          <strong>Datenminimierung:</strong> Es werden keine über den technischen Zweck
-          hinausgehenden Daten erhoben oder gespeichert. Es gibt keine Cookies und kein
-          Tracking.
+          <strong>Löschung:</strong> Die Dateien werden nach dem Upload auf den Webserver
+          sofort und unwiderruflich aus dem temporären Speicher des Servers gelöscht,
+          sobald sie an den finalen Speicherort übertragen wurden.
         </li>
       </ul>
+
+      <p>
+        <strong>Integrität:</strong><br />
+        Die Datenintegrität während der Übertragung wird durch die verwendeten Protokolle
+        (TCP/IP, HTTPS) sichergestellt. Die Speicherinfrastruktur des Subprozessors
+        gewährleistet die Integrität der Daten im Ruhezustand.
+      </p>
+
+      <p>
+        <strong>Verfügbarkeit:</strong><br />
+        Das System wird auf einer hochverfügbaren, cloud-nativen Infrastruktur betrieben,
+        um eine zuverlässige Erreichbarkeit zu gewährleisten.
+      </p>
+
+      <p>
+        <strong>Datenminimierung:</strong><br />
+        Es werden keine über den technischen Zweck hinausgehenden Daten erhoben oder
+        gespeichert. Es gibt keine Cookies und kein Tracking.
+      </p>
 
       <h2>Subprozessoren & Datentransfers</h2>
       <p>
         Für den Betrieb dieser Website und die Speicherung der Daten wird ein einziger
         Subprozessor eingesetzt:
       </p>
-      <ul>
-        <li>
-          <strong>Unternehmen:</strong> Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA
-          91789, USA.
-        </li>
-        <li>
-          <strong>Zweck:</strong> Hosting der Web-Infrastruktur und Bereitstellung des
-          Blob Storage für die Dateiuploads.
-        </li>
-        <li>
-          <strong>Verarbeitete Daten (als Auftragsverarbeiter):</strong> Vercel
-          verarbeitet im Auftrag des Betreibers technisch notwendige Verbindungsdaten der
-          Nutzer (z.B. IP-Adressen) zur Gewährleistung der Sicherheit und zur Auslieferung
-          der Inhalte, sowie die hochgeladenen Dateien selbst. Die Anwendungslogik dieses
-          Portals greift nicht auf die IP-Adressen zu.
-        </li>
-        <li>
-          <strong>Datenübermittlung in Drittländer:</strong> Die Datenverarbeitung durch
-          Vercel findet in den USA statt. Die Rechtmäßigkeit dieser Datenübermittlung in
-          ein Drittland ist durch angemessene Garantien nach Art. 46 DSGVO sichergestellt.
-          Vercel ist unter dem
-          <strong>EU-U.S. Data Privacy Framework</strong> zertifiziert, wodurch ein
-          Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO) vorliegt. Zusätzlich
-          werden <strong>Standardvertragsklauseln (SCC)</strong> angewendet.
-        </li>
-        <li>
-          <strong>Dokumentation:</strong> Die Grundlage für diese Zusammenarbeit bildet
-          das
-          <a href="https://vercel.com/legal/dpa" target="_blank" rel="noopener noreferrer"
-            >Data Processing Addendum (DPA) von Vercel</a
-          >, welches die technischen und organisatorischen Maßnahmen sowie die Pflichten
-          beider Parteien detailliert regelt.
-        </li>
-      </ul>
+
+      <p>
+        <strong>Unternehmen:</strong><br />
+        Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA.
+      </p>
+
+      <p>
+        <strong>Zweck:</strong><br />
+        Hosting der Web-Infrastruktur und Bereitstellung des Blob Storage für die
+        Dateiuploads.
+      </p>
+
+      <p>
+        <strong>Verarbeitete Daten (als Auftragsverarbeiter):</strong><br />
+        Vercel verarbeitet im Auftrag des Betreibers technisch notwendige Verbindungsdaten
+        der Nutzer (z.B. IP-Adressen) zur Gewährleistung der Sicherheit und zur
+        Auslieferung der Inhalte, sowie die hochgeladenen Dateien selbst. Die
+        Anwendungslogik dieses Portals greift nicht auf die IP-Adressen zu.
+      </p>
+
+      <p>
+        <strong>Datenübermittlung in Drittländer:</strong><br />
+        Die Datenverarbeitung durch Vercel findet in den USA statt. Die Rechtmäßigkeit
+        dieser Datenübermittlung in ein Drittland ist durch angemessene Garantien nach
+        Art. 46 DSGVO sichergestellt. Vercel ist unter dem
+        <strong>EU-U.S. Data Privacy Framework</strong> zertifiziert, wodurch ein
+        Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO) vorliegt. Zusätzlich
+        werden <strong>Standardvertragsklauseln (SCC)</strong> angewendet.
+      </p>
+
+      <p>
+        <strong>Dokumentation:</strong><br />
+        Die Grundlage für diese Zusammenarbeit bildet das
+        <a href="https://vercel.com/legal/dpa" target="_blank" rel="noopener noreferrer"
+          >Data Processing Addendum (DPA) von Vercel</a
+        >, welches die technischen und organisatorischen Maßnahmen sowie die Pflichten
+        beider Parteien detailliert regelt.
+      </p>
       <p>Es werden keine weiteren Subprozessoren eingesetzt.</p>
 
       <h2>Kontakt für Datenschutzanliegen</h2>
@@ -149,10 +157,16 @@
         bezüglich Datenschutz, Auskunftsersuchen oder der Meldung von Sicherheitsvorfällen
         wenden Sie sich bitte direkt an den Betreiber:
       </p>
-      <ul>
-        <li><strong>Verantwortlicher:</strong> Erich Lehmann</li>
-        <li><strong>E-Mail:</strong> (Bitte geben Sie hier Ihre E-Mail-Adresse an)</li>
-      </ul>
+
+      <p>
+        <strong>Verantwortlicher:</strong><br />
+        Erich Lehmann
+      </p>
+
+      <p>
+        <strong>E-Mail:</strong><br />
+        erichjohannlehmann[at]gmail.com
+      </p>
     </div>
     <div id="footer-placeholder"></div>
     <script src="assets/js/header.js"></script>
