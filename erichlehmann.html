@@ -4,24 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Patientendaten Versand</title>
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
     <script src="https://unpkg.com/unfetch/dist/unfetch.umd.js"></script>
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
     <div class="container">
       <div id="header-placeholder"></div>
-
-      <h3>Daten werden verschlüsselt versendet an:</h3>
-      <div class="recipient-card">
-        <div class="profile-picture-container">
-          <img id="profilePic" src="" alt="Profilbild Patient" />
-          <div id="profileInitials" class="initials-fallback"></div>
-        </div>
-        <div class="user-info">
-          <span id="patientNameHeader" class="name"></span>
-          <span id="patientOrgHeader" class="org"></span>
-        </div>
-      </div>
 
       <div id="upload-form-container">
         <h3 id="upload-heading">Dateien für den Versand auswählen</h3>
@@ -47,7 +36,20 @@
             <tbody></tbody>
           </table>
         </div>
+      </div>
 
+      <h3>Daten werden verschlüsselt versendet an:</h3>
+      <div class="recipient-card">
+        <div class="recipient-info">
+          <div class="profile-picture-container">
+            <img id="profilePic" src="" alt="Profilbild Patient" />
+            <div id="profileInitials" class="initials-fallback"></div>
+          </div>
+          <div class="user-info">
+            <span id="patientNameHeader" class="name"></span>
+            <span id="patientOrgHeader" class="org"></span>
+          </div>
+        </div>
         <div class="send-button-container">
           <button id="sendBtn" disabled>Dateien an Patienten versenden</button>
           <a href="#" id="reset-upload-btn" class="reset-link" style="display: none"

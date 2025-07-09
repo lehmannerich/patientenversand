@@ -184,11 +184,17 @@ a.home-link:hover {
 .recipient-card {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 15px;
   border: 1px solid #ccc;
   padding: 15px;
   border-radius: 4px;
   margin-bottom: 30px;
+}
+.recipient-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 .user-profile-area {
   margin-bottom: 30px;
