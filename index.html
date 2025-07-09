@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Willkommen beim Patientenversand</title>
+    <title>Willkommen beim <span id="project-name-title"></span></title>
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
     <script src="https://unpkg.com/unfetch/dist/unfetch.umd.js"></script>
     <link rel="stylesheet" href="assets/css/styles.css" />
@@ -19,27 +19,28 @@
         </p>
         <p>
           Das Besondere ist, dass dieses Portal von erfahrenen Experten entwickelt wurde,
-          aber es wird von mir, Erich Lehmann, selbst betrieben und gehostet. Ärzte müssen
-          keine Konten erstellen oder sich um komplexe Dinge kümmern, da der Patient
-          bereits alles vorbereitet hat. Dazu gehört auch eine unterschriebene
-          Einwilligung, die Sie direkt für Ihre Dokumentation herunterladen können.
+          aber es wird von mir,
+          <span id="owner-name-index" style="font-weight: bold"></span>, selbst betrieben
+          und gehostet. Ärzte müssen keine Konten erstellen oder sich um komplexe Dinge
+          kümmern, da der Patient bereits alles vorbereitet hat. Dazu gehört auch eine
+          unterschriebene Einwilligung, die Sie direkt für Ihre Dokumentation
+          herunterladen können.
         </p>
         <h2><strong>Die Nutzung ist denkbar einfach.</strong></h2>
         <p>
           Der Patient hat einen eigens betriebene Instanz dieses Portals und schickt der
           Praxis einen Link zu seinem Profil. Die Praxis kann nun direkt und sicher
-          Dateien hochladen. Laden Sie Dateien bis zu einer Größe von 50 MB hoch – egal ob
-          Befunde, Rezepte, medizinische Berichte oder andere relevante Dokumente. Diese
-          werden lokal auf Ihrem Rechner automatisch in einen passwortgeschützten und
-          verschlüsselten ZIP-Ordner gepackt. Erst wenn die Verschlüsselung abgeschlossen
-          ist, erfolgt die Übertragung der Daten an das Portal, für dessen Betrieb ich
-          verantwortlich bin.
+          Dateien hochladen. Laden Sie Dateien bis zu einer Größe von
+          <span id="max-file-size-text" style="font-weight: bold"></span> MB hoch – egal
+          ob Befunde, Rezepte, medizinische Berichte oder andere relevante Dokumente.
+          Diese werden lokal auf Ihrem Rechner automatisch in einen passwortgeschützten
+          und verschlüsselten ZIP-Ordner gepackt. Erst wenn die Verschlüsselung
+          abgeschlossen ist, erfolgt die Übertragung der Daten an das Portal, für dessen
+          Betrieb ich verantwortlich bin.
         </p>
         <p>
           Der Code ist transparent und kann jederzeit eingesehen werden unter
-          <a href="https://github.com/lehmannerich/patientenversand"
-            >https://github.com/lehmannerich/patientenversand</a
-          >
+          <a id="github-link-index" href="" target="_blank" rel="noopener noreferrer"></a>
           für eine Prüfung durch Ihren Datenschutzbeauftragten offen. Diese Website
           verwendet keinerlei Cookies, weshalb auch kein Cookie-Banner erforderlich ist.
           Alle rechtlichen Informationen sowie technische Details zur Softwarearchitektur
@@ -51,12 +52,14 @@
           Möglichkeit zu bieten, ihre persönlichen medizinischen Daten zu empfangen.
         </p>
         <p>
-          <a href="erichlehmann.html">Zum Portal von Erich Lehmann</a>
+          <a id="portal-link-index" href=""></a>
         </p>
       </div>
     </div>
     <div id="footer-placeholder"></div>
     <script src="assets/js/header.js"></script>
     <script src="assets/js/footer.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/populate-config.js"></script>
   </body>
 </html>

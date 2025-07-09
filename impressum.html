@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Impressum - Patientenversand</title>
+    <title>Impressum - <span id="project-name-title"></span></title>
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
     <script src="https://unpkg.com/unfetch/dist/unfetch.umd.js"></script>
     <link rel="stylesheet" href="assets/css/styles.css" />
@@ -14,13 +14,13 @@
 
       <h2>Angaben gemäß § 5 TMG</h2>
       <p>
-        Erich Lehmann<br />
-        Sandstr. 25<br />
-        80335 München
+        <span id="impressum-name"></span><br />
+        <span id="impressum-street"></span><br />
+        <span id="impressum-city"></span>
       </p>
 
       <h2>Kontakt</h2>
-      <p>E-Mail: erichjohannlehmann[at]gmail.com</p>
+      <p>E-Mail: <span id="impressum-email"></span></p>
       <p>
         <em
           >Hinweis: Dieses Projekt wird als private, nicht-kommerzielle Initiative
@@ -55,5 +55,7 @@
     <div id="footer-placeholder"></div>
     <script src="assets/js/header.js"></script>
     <script src="assets/js/footer.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/populate-config.js"></script>
   </body>
 </html>

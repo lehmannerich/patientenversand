@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Compliance Hub - Patientenversand</title>
+    <title>Compliance Hub - <span id="project-name-title"></span></title>
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
     <script src="https://unpkg.com/unfetch/dist/unfetch.umd.js"></script>
     <link rel="stylesheet" href="assets/css/styles.css" />
@@ -59,7 +59,8 @@
           <td>
             Der vollständige Quellcode des Portals ist
             <a
-              href="https://github.com/lehmannerich/patientenversand"
+              id="github-link-compliance"
+              href=""
               target="_blank"
               rel="noopener noreferrer"
               >öffentlich auf GitHub</a
@@ -183,16 +184,18 @@
       <table class="compliance-table">
         <tr>
           <td class="label-column">Verantwortlicher</td>
-          <td>Erich Lehmann</td>
+          <td id="patient-name-compliance"></td>
         </tr>
         <tr>
           <td class="label-column">E-Mail</td>
-          <td>erichjohannlehmann[at]gmail.com</td>
+          <td id="patient-email-compliance"></td>
         </tr>
       </table>
     </div>
     <div id="footer-placeholder"></div>
     <script src="assets/js/header.js"></script>
     <script src="assets/js/footer.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/populate-config.js"></script>
   </body>
 </html>
