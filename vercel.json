@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/upload.js": {
+      "runtime": "edge"
+    }
+  }
+}
