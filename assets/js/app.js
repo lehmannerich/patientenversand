@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  let uploadedFiles = [];
   const patientName = config.patient.name;
   const patientOrg = config.patient.organization;
   const patientProfilePic = config.patient.profilePicture;
@@ -89,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       // If there are already completed files in the list, clear them out
       if (document.querySelector(".status-success, .status-error")) {
-        resetUI();
+        resetUploadState();
       }
       // Don't add files if the process is "done" and waiting for a reset
       if (document.getElementById("reset-upload-btn").style.display !== "none") {
@@ -112,10 +113,13 @@ document.addEventListener("DOMContentLoaded", () => {
       "<td>" +
       formatFileSize(file.size) +
       "</td>" +
-      "<td><button onclick=\"removeFile(this, '" +
-      file.name +
-      "')\">Entfernen</button></td>" +
+      "<td><button>Entfernen</button></td>" +
       '<td class="status-cell">bereit zum versenden</td>';
+
+    const removeBtn = row.querySelector("button");
+    removeBtn.addEventListener("click", function () {
+      removeFile(this, file.name);
+    });
   }
 
   function removeFile(buttonElement, fileName) {
@@ -218,6 +222,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("reset-upload-btn").addEventListener("click", function (event) {
     event.preventDefault();
-    resetUI();
+    resetUploadState();
   });
+
+  function resetUploadState() {
+    uploadedFiles = [];
+    fileTableBody.innerHTML = "";
+    sendBtn.disabled = true;
+    sendBtn.textContent = "Senden";
+    sendBtn.classList.remove("button-primary");
+    browseBtn.classList.add("button-primary");
+    fileTableContainer.style.display = "none";
+    document.getElementById("upload-heading").classList.remove("disabled");
+    document.getElementById("reset-upload-btn").style.display = "none";
+    document.getElementById("uploadArea").classList.remove("disabled");
+    document.getElementById("browseBtn").disabled = false;
+    // Clear the file input for consistency
+    fileInput.value = "";
+  }
 });
