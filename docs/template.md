@@ -11,7 +11,7 @@ Für die sichere und datenschutzkonforme Übermittlung der digitalen Unterlagen 
 
 **[Hier den Link zu deinem Portal einfügen, z.B. https://www.patientenversand.de/erichlehmann.html]**
 
-Dieses Verfahren stellt eine sichere Übertragung Ende-zu-Ende-verschlüsselter Daten sicher und ist für Sie mit minimalem Aufwand verbunden.
+Dieses Verfahren stellt eine sichere und datenschutzkonforme Übertragung der Daten sicher und ist für Sie mit minimalem Aufwand verbunden.
 
 Gemäß Art. 12 Abs. 3 DS-GVO ist meinem Antrag unverzüglich, in jedem Fall aber innerhalb eines Monats nach Eingang nachzukommen. Ich weise darauf hin, dass die Bereitstellung der ersten Kopie meiner Daten gemäß Art. 12 Abs. 5 DS-GVO für mich unentgeltlich ist.
 

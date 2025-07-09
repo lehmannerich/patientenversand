@@ -12,8 +12,8 @@ Das Patientenversand Portal ist ein sicherer Weg, um Patientendaten direkt an Pa
 
 - Der Patient schickt Ihnen einen Link zu seinem persönlichen Portal
 - Sie können direkt und sicher Dateien bis zu 50 MB hochladen (Befunde, Rezepte, medizinische Berichte)
-- Die Dateien werden automatisch lokal verschlüsselt und in einen passwortgeschützten ZIP-Ordner gepackt
-- Erst nach der Verschlüsselung erfolgt die sichere Übertragung
+- Die Dateien werden direkt über eine gesicherte Verbindung (HTTPS) an das Portal des Patienten übertragen
+- Die Sicherheit der Übertragung ist durch eine starke TLS-Verschlüsselung gewährleistet
 
 Das Portal verfolgt keine kommerziellen Interessen und ist kostenfrei nutzbar.
 
@@ -51,9 +51,11 @@ Das Patientenversand Portal wurde mit Fokus auf Datenschutz und Sicherheit entwi
 
 **Architektur-Highlights:**
 
-- Client-seitige Verschlüsselung vor der Übertragung
-- Passwortgeschützte und verschlüsselte ZIP-Archive
-- Keine permanente Speicherung von Patientendaten auf dem Server
+**Architektur-Highlights:**
+
+- Starke Transportverschlüsselung (TLS 1.2+) für die gesamte Datenübertragung
+- Verschlüsselung der Daten im Ruhezustand (Encryption-at-Rest) durch den Cloud-Anbieter
+- Sofortige Löschung der Datei vom Webserver nach erfolgreicher Weiterleitung an den finalen Speicherort (Vercel Blob Storage)
 - Minimale Datenverarbeitung und -speicherung
 - Transparente Open-Source-Implementierung
 
