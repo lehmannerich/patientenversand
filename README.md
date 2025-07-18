@@ -1,3 +1,9 @@
+# AKTUELLER STATUS
+
+- der upload funktioniert aber er ist unverschlüsselt
+- der blob ist öffentlich
+- muss verschlüsselt sein um zu funktionieren
+
 # Patientenversand Portal
 
 Dieses Portal ermöglicht es Ärzten und anderen medizinischen Leistungserbringern, Patientendaten sicher und direkt an Patienten zu senden. Das System wurde von erfahrenen Experten entwickelt und bietet eine einfache, sichere und DSGVO-konforme Lösung für den Austausch medizinischer Dokumente.
